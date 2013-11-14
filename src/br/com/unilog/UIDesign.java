@@ -6,6 +6,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JSeparator;
 
 public class UIDesign extends JFrame {
 
@@ -36,7 +37,7 @@ public class UIDesign extends JFrame {
 	 */
 	public UIDesign() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1031, 568);
+		setBounds(100, 100, 1156, 568);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
