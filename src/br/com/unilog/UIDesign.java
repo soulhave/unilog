@@ -1,6 +1,6 @@
 package br.com.unilog;
 
-import java.awt.BorderLayout;
+import java.awt.CardLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -39,8 +39,7 @@ public class UIDesign extends JFrame {
 		setBounds(100, 100, 1031, 568);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
+		contentPane.setLayout(new CardLayout(0, 0));
 	}
-
 }
