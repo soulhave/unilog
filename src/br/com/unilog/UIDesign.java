@@ -2,6 +2,7 @@ package br.com.unilog;
 
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
@@ -36,6 +37,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
+import br.com.unilog.bo.MontaXMLBO;
 import br.com.unilog.enuns.TipoNota;
 import br.com.unilog.to.Carregamento;
 import br.com.unilog.to.Nota;
@@ -93,11 +95,13 @@ public class UIDesign extends JFrame {
 	private JButton btnEditarNotas;
 	private JButton btnExcluir;
 	private JDateChooser dataNota;
+	private MontaXMLBO montaXML;
 	
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -110,12 +114,15 @@ public class UIDesign extends JFrame {
 			}
 		});
 	}
+	
+	
 
 	/**
 	 * Create the frame.
 	 */
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public UIDesign() {
+		montaXML = new MontaXMLBO(); //Inicia o object
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 869, 838);
 		contentPane = new JPanel();
@@ -453,6 +460,8 @@ public class UIDesign extends JFrame {
 		JButton btnSalvar = new JButton("Salvar");
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				bindToCarregamento();
+				montaXML.criarXMLsend(carregamento);
 			}
 		});
 		btnSalvar.setFont(font);
@@ -599,6 +608,20 @@ public class UIDesign extends JFrame {
 	
 	private void parseToXml() {
 		XStream xStream = new XStream();
+		bindToCarregamento();
+		
+	    try {
+	    	BufferedWriter writer = new BufferedWriter(new FileWriter(XML_SAVE));
+			writer.write(xStream.toXML(carregamento).trim());
+			writer.close();
+		} catch (IOException e) {
+			JOptionPane.showMessageDialog(null, "Error:"+e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+
+
+
+	private void bindToCarregamento() {
 		carregamento = new Carregamento();
 		
 		carregamento.setAtrelados(Integer.parseInt(numeroAtrelados.getText().trim()));
@@ -614,14 +637,6 @@ public class UIDesign extends JFrame {
 		carregamento.setUsuario(usuario.getText().trim());
 		carregamento.setSenha(senha.getText().trim());
 		carregamento.setTipoOperacao((String)tipoOperacao.getSelectedItem());
-		
-	    try {
-	    	BufferedWriter writer = new BufferedWriter(new FileWriter(XML_SAVE));
-			writer.write(xStream.toXML(carregamento).trim());
-			writer.close();
-		} catch (IOException e) {
-			JOptionPane.showMessageDialog(null, "Error:"+e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-		}
 	}
 	
 	
@@ -716,4 +731,5 @@ public class UIDesign extends JFrame {
 			}
 		}
 	}
+	
 }
