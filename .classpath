@@ -5,9 +5,19 @@
 	<classpathentry kind="lib" path="lib/jcalendar-1.4.1.v201109071408.jar"/>
 	<classpathentry kind="lib" path="lib/jgoodies-common-1.2.0.jar"/>
 	<classpathentry kind="lib" path="lib/jgoodies-looks-2.4.1.jar"/>
-	<classpathentry kind="lib" path="lib/xstream-1.4-20110423.112604-3.jar"/>
-	<classpathentry kind="lib" path="lib/xmlpull-xpp3-1.1.4c.jar"/>
+	<classpathentry kind="lib" path="lib/commons-beanutils-1.5.jar"/>
+	<classpathentry kind="lib" path="lib/commons-collections-3.2.jar"/>
+	<classpathentry kind="lib" path="lib/commons-logging-1.0.4.jar"/>
+	<classpathentry kind="lib" path="lib/InvokerUnicom.jar"/>
+	<classpathentry kind="lib" path="lib/j2ee.jar"/>
+	<classpathentry kind="lib" path="lib/jms.jar"/>
+	<classpathentry kind="lib" path="lib/jmxri.jar"/>
+	<classpathentry kind="lib" path="lib/jta.jar"/>
+	<classpathentry kind="lib" path="lib/LogCorpejbClient.jar"/>
 	<classpathentry kind="lib" path="lib/oc4jclient.jar"/>
+	<classpathentry kind="lib" path="lib/ojdl.jar"/>
 	<classpathentry kind="lib" path="lib/optic.jar"/>
+	<classpathentry kind="lib" path="lib/xmlpull-xpp3-1.1.4c.jar"/>
+	<classpathentry kind="lib" path="lib/xstream-1.4-20110423.112604-3.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

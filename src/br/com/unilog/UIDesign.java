@@ -46,6 +46,7 @@ import br.com.unilog.utilitario.Utilitario;
 
 import com.thoughtworks.xstream.XStream;
 import com.toedter.calendar.JDateChooser;
+import com.vale.sc.unificacaocomercial.unicom.invokerunicom.incarregamento.services.impl.ejb.InCarregamentoEJB;
 
 public class UIDesign extends JFrame {
 
@@ -57,7 +58,7 @@ public class UIDesign extends JFrame {
 		"Tipo Nota", "Série", "Número", "Data", "Valor", "Peso", "Chave"
 	};
 
-	private static Object _services = null;
+	private static InCarregamentoEJB _services = null;
 	/**
 	 * 
 	 */
@@ -460,8 +461,7 @@ public class UIDesign extends JFrame {
 		JButton btnSalvar = new JButton("Salvar");
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				bindToCarregamento();
-				montaXML.criarXMLsend(carregamento);
+				obtemXml();
 			}
 		});
 		btnSalvar.setFont(font);
@@ -722,14 +722,21 @@ public class UIDesign extends JFrame {
 				if (obj != null) {
 					Object home = PortableRemoteObject.narrow(obj, Class.forName("com.vale.sc.unificacaocomercial.unicom.invokerunicom.incarregamento.services.impl.ejb.InCarregamentoHome", false, Thread.currentThread().getContextClassLoader()));
 					Method method = home.getClass().getMethod("create", null);
-					_services = method.invoke(home, null);
-					System.out.println(_services);
+					_services = (InCarregamentoEJB)method.invoke(home, null);
+					System.out.println(_services.syncFreight(obtemXml(), ""));
 				}
 			}catch(Exception e){
 				e.printStackTrace();
 				JOptionPane.showMessageDialog(null, e.getMessage());
 			}
 		}
+	}
+
+
+
+	private String obtemXml() {
+		bindToCarregamento();
+		return montaXML.criarXMLsend(carregamento);
 	}
 	
 }
